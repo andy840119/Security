@@ -61,16 +61,6 @@ namespace Microsoft.AspNetCore.Authentication.Line
 
         // Line uses a non-standard term for this field.
         /// <summary>
-        /// Gets or sets the Line-assigned appId.
-        /// </summary>
-        public string ClientId
-        {
-            get { return ClientId; }
-            set { ClientId = value; }
-        }
-
-        // Line uses a non-standard term for this field.
-        /// <summary>
         /// Gets or sets the Line-assigned app secret.
         /// </summary>
         public string AppSecret
