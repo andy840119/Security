@@ -21,32 +21,24 @@ namespace Microsoft.AspNetCore.Authentication.Line
         /// </summary>
         public LineOptions()
         {
-            CallbackPath = new PathString("/signin-facebook");
+            CallbackPath = new PathString("");
             SendAppSecretProof = true;
             AuthorizationEndpoint = LineDefaults.AuthorizationEndpoint;
             TokenEndpoint = LineDefaults.TokenEndpoint;
             UserInformationEndpoint = LineDefaults.UserInformationEndpoint;
-            Scope.Add("public_profile");
-            Scope.Add("email");
-            Fields.Add("name");
-            Fields.Add("email");
-            Fields.Add("first_name");
-            Fields.Add("last_name");
 
-            ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "id");
-            ClaimActions.MapJsonSubKey("urn:facebook:age_range_min", "age_range", "min");
-            ClaimActions.MapJsonSubKey("urn:facebook:age_range_max", "age_range", "max");
-            ClaimActions.MapJsonKey(ClaimTypes.DateOfBirth, "birthday");
+            //get scope
+            Scope.Add("openid");
+            Scope.Add("profile");
+            Scope.Add("email");
+
+            //field
+            QueryParameter.Add("response_type","code");
+            QueryParameter.Add("client_id",ClientId);
+
+            //get scope
+            ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "openid");
             ClaimActions.MapJsonKey(ClaimTypes.Email, "email");
-            ClaimActions.MapJsonKey(ClaimTypes.Name, "name");
-            ClaimActions.MapJsonKey(ClaimTypes.GivenName, "first_name");
-            ClaimActions.MapJsonKey("urn:facebook:middle_name", "middle_name");
-            ClaimActions.MapJsonKey(ClaimTypes.Surname, "last_name");
-            ClaimActions.MapJsonKey(ClaimTypes.Gender, "gender");
-            ClaimActions.MapJsonKey("urn:facebook:link", "link");
-            ClaimActions.MapJsonSubKey("urn:facebook:location", "location", "name");
-            ClaimActions.MapJsonKey(ClaimTypes.Locality, "locale");
-            ClaimActions.MapJsonKey("urn:facebook:timezone", "timezone");
         }
 
         /// <summary>
@@ -54,9 +46,9 @@ namespace Microsoft.AspNetCore.Authentication.Line
         /// </summary>
         public override void Validate()
         {
-            if (string.IsNullOrEmpty(AppId))
+            if (string.IsNullOrEmpty(ClientId))
             {
-                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.Exception_OptionMustBeProvided, nameof(AppId)), nameof(AppId));
+                throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, Resources.Exception_OptionMustBeProvided, nameof(ClientId)), nameof(ClientId));
             }
 
             if (string.IsNullOrEmpty(AppSecret))
@@ -71,7 +63,7 @@ namespace Microsoft.AspNetCore.Authentication.Line
         /// <summary>
         /// Gets or sets the Line-assigned appId.
         /// </summary>
-        public string AppId
+        public string ClientId
         {
             get { return ClientId; }
             set { ClientId = value; }
@@ -95,8 +87,8 @@ namespace Microsoft.AspNetCore.Authentication.Line
 
         /// <summary>
         /// The list of fields to retrieve from the UserInformationEndpoint.
-        /// https://developers.facebook.com/docs/graph-api/reference/user
+        /// https://developers.line.me/en/docs/line-login/web/try-line-login/
         /// </summary>
-        public ICollection<string> Fields { get; } = new HashSet<string>();
+        public IDictionary<string,string> QueryParameter { get; } = new Dictionary<string,string>();
     }
 }

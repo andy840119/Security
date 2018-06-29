@@ -9,10 +9,10 @@ namespace Microsoft.AspNetCore.Authentication.Line
 
         public static readonly string DisplayName = "Line";
 
-        public static readonly string AuthorizationEndpoint = "https://www.facebook.com/v2.12/dialog/oauth";
+        public static readonly string AuthorizationEndpoint = "https://access.line.me/oauth2/v2.1/authorize";
 
-        public static readonly string TokenEndpoint = "https://graph.facebook.com/v2.12/oauth/access_token";
+        public static readonly string TokenEndpoint = "https://api.line.me/oauth2/v2.1/token";
 
-        public static readonly string UserInformationEndpoint = "https://graph.facebook.com/v2.12/me";
+        public static readonly string UserInformationEndpoint = "https://api.line.me/v2/profile";
     }
 }

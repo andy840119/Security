@@ -30,9 +30,12 @@ namespace Microsoft.AspNetCore.Authentication.Line
             {
                 endpoint = QueryHelpers.AddQueryString(endpoint, "appsecret_proof", GenerateAppSecretProof(tokens.AccessToken));
             }
-            if (Options.Fields.Count > 0)
+            if (Options.QueryParameter.Count > 0)
             {
-                endpoint = QueryHelpers.AddQueryString(endpoint, "fields", string.Join(",", Options.Fields));
+                foreach (var keyValue in Options.QueryParameter)
+                {
+                    endpoint = QueryHelpers.AddQueryString(endpoint, keyValue.Key, keyValue.Value);
+                }
             }
 
             var response = await Backchannel.GetAsync(endpoint, Context.RequestAborted);
@@ -52,6 +55,7 @@ namespace Microsoft.AspNetCore.Authentication.Line
 
         }
 
+        //TODO : line does not need to use this
         private string GenerateAppSecretProof(string accessToken)
         {
             using (var algorithm = new HMACSHA256(Encoding.ASCII.GetBytes(Options.AppSecret)))
@@ -69,9 +73,8 @@ namespace Microsoft.AspNetCore.Authentication.Line
         protected override string FormatScope(IEnumerable<string> scopes)
         {
             // Line deviates from the OAuth spec here. They require comma separated instead of space separated.
-            // https://developers.facebook.com/docs/reference/dialogs/oauth
-            // http://tools.ietf.org/html/rfc6749#section-3.3
-            return string.Join(",", scopes);
+            // https://developers.line.me/en/docs/line-login/web/integrate-line-login/
+            return base.FormatScope(scopes);
         }
 
         protected override string FormatScope()
