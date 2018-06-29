@@ -67,9 +67,9 @@ namespace Microsoft.AspNetCore.Authentication.Line
             base.Validate();
         }
 
-        // Facebook uses a non-standard term for this field.
+        // Line uses a non-standard term for this field.
         /// <summary>
-        /// Gets or sets the Facebook-assigned appId.
+        /// Gets or sets the Line-assigned appId.
         /// </summary>
         public string AppId
         {
@@ -77,9 +77,9 @@ namespace Microsoft.AspNetCore.Authentication.Line
             set { ClientId = value; }
         }
 
-        // Facebook uses a non-standard term for this field.
+        // Line uses a non-standard term for this field.
         /// <summary>
-        /// Gets or sets the Facebook-assigned app secret.
+        /// Gets or sets the Line-assigned app secret.
         /// </summary>
         public string AppSecret
         {
@@ -88,7 +88,7 @@ namespace Microsoft.AspNetCore.Authentication.Line
         }
 
         /// <summary>
-        /// Gets or sets if the appsecret_proof should be generated and sent with Facebook API calls.
+        /// Gets or sets if the appsecret_proof should be generated and sent with Line API calls.
         /// This is enabled by default.
         /// </summary>
         public bool SendAppSecretProof { get; set; }

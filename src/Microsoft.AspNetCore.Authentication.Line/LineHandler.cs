@@ -38,7 +38,7 @@ namespace Microsoft.AspNetCore.Authentication.Line
             var response = await Backchannel.GetAsync(endpoint, Context.RequestAborted);
             if (!response.IsSuccessStatusCode)
             {
-                throw new HttpRequestException($"An error occurred when retrieving Facebook user information ({response.StatusCode}). Please check if the authentication information is correct and the corresponding Facebook Graph API is enabled.");
+                throw new HttpRequestException($"An error occurred when retrieving Line user information ({response.StatusCode}). Please check if the authentication information is correct and the corresponding Line Graph API is enabled.");
             }
 
             var payload = JObject.Parse(await response.Content.ReadAsStringAsync());
@@ -68,7 +68,7 @@ namespace Microsoft.AspNetCore.Authentication.Line
 
         protected override string FormatScope(IEnumerable<string> scopes)
         {
-            // Facebook deviates from the OAuth spec here. They require comma separated instead of space separated.
+            // Line deviates from the OAuth spec here. They require comma separated instead of space separated.
             // https://developers.facebook.com/docs/reference/dialogs/oauth
             // http://tools.ietf.org/html/rfc6749#section-3.3
             return string.Join(",", scopes);

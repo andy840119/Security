@@ -9,16 +9,16 @@ namespace Microsoft.Extensions.DependencyInjection
 {
     public static class LineAuthenticationOptionsExtensions
     {
-        public static AuthenticationBuilder AddFacebook(this AuthenticationBuilder builder)
-            => builder.AddFacebook(LineDefaults.AuthenticationScheme, _ => { });
+        public static AuthenticationBuilder AddLine(this AuthenticationBuilder builder)
+            => builder.AddLine(LineDefaults.AuthenticationScheme, _ => { });
 
-        public static AuthenticationBuilder AddFacebook(this AuthenticationBuilder builder, Action<LineOptions> configureOptions)
-            => builder.AddFacebook(LineDefaults.AuthenticationScheme, configureOptions);
+        public static AuthenticationBuilder AddLine(this AuthenticationBuilder builder, Action<LineOptions> configureOptions)
+            => builder.AddLine(LineDefaults.AuthenticationScheme, configureOptions);
 
-        public static AuthenticationBuilder AddFacebook(this AuthenticationBuilder builder, string authenticationScheme, Action<LineOptions> configureOptions)
-            => builder.AddFacebook(authenticationScheme, LineDefaults.DisplayName, configureOptions);
+        public static AuthenticationBuilder AddLine(this AuthenticationBuilder builder, string authenticationScheme, Action<LineOptions> configureOptions)
+            => builder.AddLine(authenticationScheme, LineDefaults.DisplayName, configureOptions);
 
-        public static AuthenticationBuilder AddFacebook(this AuthenticationBuilder builder, string authenticationScheme, string displayName, Action<LineOptions> configureOptions)
+        public static AuthenticationBuilder AddLine(this AuthenticationBuilder builder, string authenticationScheme, string displayName, Action<LineOptions> configureOptions)
             => builder.AddOAuth<LineOptions, LineHandler>(authenticationScheme, displayName, configureOptions);
     }
 }

@@ -5,9 +5,9 @@ namespace Microsoft.AspNetCore.Authentication.Line
 {
     public static class LineDefaults
     {
-        public const string AuthenticationScheme = "Facebook";
+        public const string AuthenticationScheme = "Line";
 
-        public static readonly string DisplayName = "Facebook";
+        public static readonly string DisplayName = "Line";
 
         public static readonly string AuthorizationEndpoint = "https://www.facebook.com/v2.12/dialog/oauth";
 

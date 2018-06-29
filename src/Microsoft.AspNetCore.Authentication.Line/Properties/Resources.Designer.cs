@@ -8,7 +8,7 @@ namespace Microsoft.AspNetCore.Authentication.Line
     internal static class Resources
     {
         private static readonly ResourceManager _resourceManager
-            = new ResourceManager("Microsoft.AspNetCore.Authentication.Facebook.Resources", typeof(Resources).GetTypeInfo().Assembly);
+            = new ResourceManager("Microsoft.AspNetCore.Authentication.Line.Resources", typeof(Resources).GetTypeInfo().Assembly);
 
         /// <summary>
         /// The '{0}' option must be provided.
