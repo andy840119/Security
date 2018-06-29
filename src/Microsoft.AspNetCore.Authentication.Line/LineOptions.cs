@@ -9,23 +9,23 @@ using System.Globalization;
 using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.Http;
 
-namespace Microsoft.AspNetCore.Authentication.Facebook
+namespace Microsoft.AspNetCore.Authentication.Line
 {
     /// <summary>
-    /// Configuration options for <see cref="FacebookHandler"/>.
+    /// Configuration options for <see cref="LineHandler"/>.
     /// </summary>
-    public class FacebookOptions : OAuthOptions
+    public class LineOptions : OAuthOptions
     {
         /// <summary>
-        /// Initializes a new <see cref="FacebookOptions"/>.
+        /// Initializes a new <see cref="LineOptions"/>.
         /// </summary>
-        public FacebookOptions()
+        public LineOptions()
         {
             CallbackPath = new PathString("/signin-facebook");
             SendAppSecretProof = true;
-            AuthorizationEndpoint = FacebookDefaults.AuthorizationEndpoint;
-            TokenEndpoint = FacebookDefaults.TokenEndpoint;
-            UserInformationEndpoint = FacebookDefaults.UserInformationEndpoint;
+            AuthorizationEndpoint = LineDefaults.AuthorizationEndpoint;
+            TokenEndpoint = LineDefaults.TokenEndpoint;
+            UserInformationEndpoint = LineDefaults.UserInformationEndpoint;
             Scope.Add("public_profile");
             Scope.Add("email");
             Fields.Add("name");

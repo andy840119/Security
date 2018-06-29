@@ -15,11 +15,11 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
 
-namespace Microsoft.AspNetCore.Authentication.Facebook
+namespace Microsoft.AspNetCore.Authentication.Line
 {
-    public class FacebookHandler : OAuthHandler<FacebookOptions>
+    public class LineHandler : OAuthHandler<LineOptions>
     {
-        public FacebookHandler(IOptionsMonitor<FacebookOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock)
+        public LineHandler(IOptionsMonitor<LineOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock)
             : base(options, logger, encoder, clock)
         { }
 
